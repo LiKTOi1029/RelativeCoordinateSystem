@@ -1,9 +1,39 @@
 RCS = {}
 RCS.__index = RCS
 
-RCS.Coordinates = {["X"] = 0, ["Y"] = 0, ["Z"] = 0}
+CoordinateFileRead = io.open("CoordinateData.txt", "r")
 
-Switch = 0
+if CoordinateFileRead then
+	local Contents CoordinateFileRead:read("*all")
+	Contents:gsub(", ","-")
+	local ParsingTable = {}
+	for num1 = 1, Contents.len(), 1 do
+		if Contents:sub(num1,num1) ~= "-" then
+			table.insert(ParsingTable, Contents:sub(num1, num1))
+		end
+	end
+	for Number, Value in ipairs(ParsingTable) do
+		if Number == 1 then
+			RCS.Coordinates["X"] = Value
+		elseif Number == 2 then
+			RCS.Coordinates["Y"] = Value
+		elseif Number == 3 then
+			RCS.Coordinates["Z"] = Value
+		else
+			Switch = Value
+		end
+	end
+else
+	RCS.Coordinates = {["X"] = 0, ["Y"] = 0, ["Z"] = 0}
+	Switch = 0	
+end
+
+function FileUpdater()
+	local CoordinateDataFile = io.open("CoordinateData.txt", "w+")
+	local Contents = RCS.Coordinates["X"]..", "..RCS.Coordinates["Y"]..", "..RCS.Coordinates["Z"]..", "..Switch
+	CoordinateDataFile:write(Contents)
+end
+
 function DirectionUpdater(Boolean)
 	if Switch == 3 and Boolean then
 		Switch = 0
@@ -56,5 +86,7 @@ function RCS.down()
 	turtle.forward()
 	CoordinatesUpdater(-1)
 end
+
+
 
 return RCS
