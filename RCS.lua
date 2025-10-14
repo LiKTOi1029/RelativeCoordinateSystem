@@ -4,7 +4,7 @@ RCS.__index = RCS
 CoordinateFileRead = io.open("CoordinateData.txt", "r")
 
 if CoordinateFileRead then
-	local Contents CoordinateFileRead:read("*all")
+	local Contents = CoordinateFileRead:read("*all")
 	Contents:gsub(", ","-")
 	local ParsingTable = {}
 	for num1 = 1, Contents.len(), 1 do
@@ -45,6 +45,7 @@ function DirectionUpdater(Boolean)
 		Switch = Switch - 1
 	end
 end
+
 function CoordinatesUpdater(AmIGoingAlongTheYAxis)
 	if not AmIGoingAlongTheYAxis then
 		if Switch == 0 then
@@ -61,32 +62,37 @@ function CoordinatesUpdater(AmIGoingAlongTheYAxis)
 	elseif AmIGoingAlongTheYAxis == -1 then
 		RCS.Coordinates["Y"] = RCS.Coordinates["Y"] - 1
 	end
+	FileUpdater()
 end
+
 function RCS.turnLeft()
 	turtle.turnLeft()
 	DirectionUpdater(false)
 end
+
 function RCS.turnRight()
 	turtle.turnRight()
 	DirectionUpdater(true)
 end
+
 function RCS.forward()
 	turtle.forward()
 	CoordinatesUpdater(false)
 end
+
 function RCS.back()
 	turtle.forward()
 	CoordinatesUpdater(false)
 end
+
 function RCS.up()
 	turtle.forward()
 	CoordinatesUpdater(1)
 end
+
 function RCS.down()
 	turtle.forward()
 	CoordinatesUpdater(-1)
 end
-
-
 
 return RCS
