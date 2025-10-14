@@ -23,6 +23,7 @@ if CoordinateFileRead then
 			Switch = Value
 		end
 	end
+	CoordinateFileRead:close()
 else
 	RCS.Coordinates = {["X"] = 0, ["Y"] = 0, ["Z"] = 0}
 	Switch = 0	
@@ -32,6 +33,7 @@ function FileUpdater()
 	local CoordinateDataFile = io.open("CoordinateData.txt", "w+")
 	local Contents = RCS.Coordinates["X"]..", "..RCS.Coordinates["Y"]..", "..RCS.Coordinates["Z"]..", "..Switch
 	CoordinateDataFile:write(Contents)
+	CoordinateDataFile:close()
 end
 
 function DirectionUpdater(Boolean)
