@@ -1,5 +1,6 @@
 RCS = {}
 RCS.__index = RCS
+RCS.Coordinates = {}
 
 CoordinateFileRead = io.open("CoordinateData.txt", "r")
 
@@ -83,17 +84,17 @@ function RCS.forward()
 end
 
 function RCS.back()
-	turtle.back()
+	turtle.forward()
 	CoordinatesUpdater(false)
 end
 
 function RCS.up()
-	turtle.up()
+	turtle.forward()
 	CoordinatesUpdater(1)
 end
 
 function RCS.down()
-	turtle.down()
+	turtle.forward()
 	CoordinatesUpdater(-1)
 end
 
