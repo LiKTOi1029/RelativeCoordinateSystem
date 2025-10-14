@@ -15,13 +15,13 @@ if CoordinateFileRead then
 	end
 	for Number, Value in ipairs(ParsingTable) do
 		if Number == 1 then
-			RCS.Coordinates["X"] = Value
+			RCS.Coordinates["X"] = tonumber(Value)
 		elseif Number == 2 then
-			RCS.Coordinates["Y"] = Value
+			RCS.Coordinates["Y"] = tonumber(Value)
 		elseif Number == 3 then
-			RCS.Coordinates["Z"] = Value
+			RCS.Coordinates["Z"] = tonumber(Value)
 		else
-			Switch = Value
+			Switch = tonumber(Value)
 		end
 	end
 	CoordinateFileRead:close()
@@ -84,17 +84,17 @@ function RCS.forward()
 end
 
 function RCS.back()
-	turtle.forward()
+	turtle.back()
 	CoordinatesUpdater(false)
 end
 
 function RCS.up()
-	turtle.forward()
+	turtle.up()
 	CoordinatesUpdater(1)
 end
 
 function RCS.down()
-	turtle.forward()
+	turtle.down()
 	CoordinatesUpdater(-1)
 end
 
