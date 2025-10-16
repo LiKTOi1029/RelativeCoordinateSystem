@@ -90,7 +90,7 @@ end
 
 function RCS.Save(Name)
 	local Instance = setmetatable({}, RCS)
-	local Instance.Save = {RCS.Coordinates["X"], RCS.Coordinates["Y"], RCS.Coordinates["Z"]}
+	local Instance.Save = {["X"] = RCS.Coordinates["X"], ["Y"] = RCS.Coordinates["Y"], ["Z"] = RCS.Coordinates["Z"]}
 	if not Instance.Name then
 		local Instance.Name = Name
 		InternalCache[Instance.Name] = Instance.Save
