@@ -1,3 +1,4 @@
+local FileName = "RCS.lua"
 local RCS = {}
 local Coordinates
 local FacingDirection = 0
@@ -5,8 +6,7 @@ local Dir
 local Absolute
 
 function RCS.Init()
-  Dir = shell.dir()
-  Absolute = shell.resolve(Dir)
+  Absolute = shell.resolve(FileName)
   print(Absolute)
 end
 
