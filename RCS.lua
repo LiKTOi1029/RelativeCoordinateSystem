@@ -1,4 +1,4 @@
-local RCS
+local RCS = {}
 local Coordinates
 local FacingDirection = 0
 local Dir
