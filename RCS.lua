@@ -26,26 +26,32 @@ local RotationMappings =
 {
   [0] = function(CurrentCoordinates)
 	CurrentCoordinates.X = CurrentCoordinates.X + 1
+	turtle.forward()
 	return CurrentCoordinates
   end,
   [1] = function(CurrentCoordinates)
 	CurrentCoordinates.Z = CurrentCoordinates.Z + 1
+	turtle.forward()
 	return CurrentCoordinates
   end,
   [2] = function(CurrentCoordinates)
 	CurrentCoordinates.X = CurrentCoordinates.X - 1
+	turtle.forward()
 	return CurrentCoordinates
   end,
   [3] = function(CurrentCoordinates)
 	CurrentCoordinates.Z = CurrentCoordinates.Z - 1
+	turtle.forward()
 	return CurrentCoordinates
   end,
   [4] = function(CurrentCoordinates)
 	CurrentCoordinates.Y = CurrentCoordinates.Y + 1
+	turtle.up()
 	return CurrentCoordinates
   end,
   [5] = function(CurrentCoordinates)
 	CurrentCoordinates.Y = CurrentCoordinates.Y - 1
+	turtle.down()
 	return CurrentCoordinates
   end,
 }
@@ -129,15 +135,16 @@ end
 
 function RCS.Move(Direction, Number)
   if not Number then Number = 1 end
+  local TemporaryCoordinates
   if type(Direction) == "number" then
 	if not RotationMappings[Direction] then
 	  io.write(AllDebuggingProtocols["ERROR"], Direction, " not a valid numeric direction value (0-3)\n")
 	  return false
 	end
 	for i = 1, Number, 1 do
-	  turtle.forward()
+	  TemporaryCoordinates = RotationMappings[Direction]()
 	end
-	RCS.UpdateCoordinates(RotationMappings[Direction]())
+	RCS.UpdateCoordinates(TemporaryCoordinates)
   else
 	io.write(AllDebuggingProtocols["ERROR"], "Direction must be integer\n")
 	return false
