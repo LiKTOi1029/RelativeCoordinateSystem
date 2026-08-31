@@ -71,7 +71,7 @@ function RCS.Init()
 	Coordinates = Load()
   else
 	io.write(AllDebuggingProtocols["FAILED"], SaveFile, " not found! Creating anew\n")
-    Coordinates = Create()
+	Coordinates = Create()
   end
 end
 
