@@ -50,9 +50,9 @@ function RCS.Init()
   end
   
   local function Create()
-	local Data = {"0", "0", "0", "0"}
+	local Data = table.concat({"0", "0", "0", "0"}, "\n")
 	local File = fs.open(Dir .. SaveFile, "w")
-	File:write(table.concat(Data, "\n"))
+	File:write(Data)
 	File:close()
 	io.write(AllDebuggingProtocols["WARNING"], "Coordinates are set to 0, 0, 0, 0 due to missing save file\n")
 	io.write(AllDebuggingProtocols["WARNING"], "If ", SaveFile, " already existed beforehand and you're\n")
