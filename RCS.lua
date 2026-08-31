@@ -152,8 +152,12 @@ function RCS.Move(Direction, Number)
   return true
 end
 
-function RCS.Turn(Direction)
-  
+function RCS.Turn(TurnCount)
+  local TemporaryCoordinates = Coordinates
+  TurnCount = math.abs(Coordinates.Direction + TurnCount) % 4
+  TemporaryCoordinates.Direction = TurnCount
+  RCS.UpdateCoordinates(TemporaryCoordinates)
+  return true
 end
 
 RCS.Init()
