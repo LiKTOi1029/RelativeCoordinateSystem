@@ -40,6 +40,14 @@ local RotationMappings =
 	CurrentCoordinates.Z = CurrentCoordinates.Z - 1
 	return CurrentCoordinates
   end,
+  [4] = function(CurrentCoordinates)
+	CurrentCoordinates.Y = CurrentCoordinates.Y + 1
+	return CurrentCoordinates
+  end,
+  [5] = function(CurrentCoordinates)
+	CurrentCoordinates.Y = CurrentCoordinates.Y - 1
+	return CurrentCoordinates
+  end,
 }
 
 -- Delimiter
@@ -130,10 +138,8 @@ function RCS.Move(Direction, Number)
 	  turtle.forward()
 	end
 	RCS.UpdateCoordinates(RotationMappings[Direction]())
-  elseif type(Direction) == "string" then
-	
   else
-	io.write(AllDebuggingProtocols["ERROR"], "Direction must be string or integer\n")
+	io.write(AllDebuggingProtocols["ERROR"], "Direction must be integer\n")
 	return false
   end
   return true
