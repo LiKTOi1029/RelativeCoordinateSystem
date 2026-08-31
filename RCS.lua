@@ -10,10 +10,10 @@ local AllDebuggingProtocols =
 }
 local MovementDirectionMappings = 
 {
-  ["up"] = turtle.up(),
-  ["forward"] = turtle.forward(),
-  ["down"] = turtle.down(),
-  ["back"] = turtle.back(),
+  ["up"] = turtle.up,
+  ["forward"] = turtle.forward,
+  ["down"] = turtle.down,
+  ["back"] = turtle.back,
 }
 local NumericDirectionMappings = 
 {
