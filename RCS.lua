@@ -71,7 +71,7 @@ local Verbose = true
 function RCS.Init()
   local function Load()
 	local File = fs.open(Dir .. SaveFile, "r")
-	local Data = File.read("*all")
+	local Data = File.readAll()
 	File.close()
 	local ParsingString, ResultingTable, Len = "", {}, Data:len()
 	for i = 1, Len, 1 do
